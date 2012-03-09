@@ -1,0 +1,3 @@
+[submodule "nano"]
+	path = nano
+	url = git@visor.ws:nano.git

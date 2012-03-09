@@ -1,0 +1,19 @@
+<phpunit bootstrap="bootstrap.php" backupGlobals="false" colors="false" stopOnFailure="false">
+
+	<testsuite name="ORM Module tests">
+		<directory>tests</directory>
+	</testsuite>
+
+	<filter>
+		<whitelist >
+			<directory suffix=".php">library</directory>
+		</whitelist>
+	</filter>
+
+	<logging>
+		<log type="coverage-html"   target="build/coverage" title="Nano Module: ORM" charset="UTF-8" yui="true" highlight="false" lowUpperBound="55" highLowerBound="80" />
+		<log type="coverage-clover" target="build/logs/clover.xml" />
+		<log type="junit"           target="build/logs/junit.xml" logIncompleteSkipped="false" />
+	</logging>
+
+</phpunit>

@@ -1,6 +1,3 @@
-[submodule "nano"]
-	path = nano
-	url = git@visor.ws:nano.git
 [submodule "dependencies/nano"]
 	path = dependencies/nano
 	url = git@visor.ws:nano.git

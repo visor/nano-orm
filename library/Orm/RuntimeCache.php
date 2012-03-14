@@ -10,7 +10,7 @@ class Orm_RuntimeCache {
 	protected $storage;
 
 	public function __construct() {
-		$this->storage = new \ArrayObject();
+		$this->clean();
 	}
 
 	/**
@@ -43,6 +43,10 @@ class Orm_RuntimeCache {
 		if ($this->storage->offsetExists($identy)) {
 			$this->storage->offsetUnset($identy);
 		}
+	}
+
+	public function clean() {
+		$this->storage = new \ArrayObject();
 	}
 
 	/**

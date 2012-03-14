@@ -96,7 +96,12 @@ abstract class Orm_Mapper {
 		if ($model->isNew()) {
 			return false;
 		}
-		return $this->dataSource()->delete($this->getResource(), $this->getIdentifyCriteria($model));
+		$this->beforeDelete($model);
+		if (true === $this->dataSource()->delete($this->getResource(), $this->getIdentifyCriteria($model))) {
+			$this->afterDelete($model);
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -303,5 +308,9 @@ abstract class Orm_Mapper {
 	protected function afterUpdate(Orm_Model $model) {}
 
 	protected function afterSave(Orm_Model $model) {}
+
+	protected function beforeDelete(Orm_Model $model) {}
+
+	protected function afterDelete(Orm_Model $model) {}
 
 }

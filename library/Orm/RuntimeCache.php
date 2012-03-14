@@ -5,7 +5,7 @@ namespace NanoOrm_Module;
 class Orm_RuntimeCache {
 
 	/**
-	 * @var ArrayObject
+	 * @var \ArrayObject
 	 */
 	protected $storage;
 
@@ -39,10 +39,7 @@ class Orm_RuntimeCache {
 	 * @param Orm_Model|array $key
 	 */
 	public function remove($key) {
-		$identy = $key;
-		if ($key instanceof Orm_Model) {
-			$identy = $key->identity();
-		}
+		$identy = $this->identyToKey($key instanceof Orm_Model ? $key->identity() : $key);
 		if ($this->storage->offsetExists($identy)) {
 			$this->storage->offsetUnset($identy);
 		}

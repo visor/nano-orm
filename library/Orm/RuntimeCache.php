@@ -35,6 +35,20 @@ class Orm_RuntimeCache {
 	}
 
 	/**
+	 * @return void
+	 * @param Orm_Model|array $key
+	 */
+	public function remove($key) {
+		$identy = $key;
+		if ($key instanceof Orm_Model) {
+			$identy = $key->identity();
+		}
+		if ($this->storage->offsetExists($identy)) {
+			$this->storage->offsetUnset($identy);
+		}
+	}
+
+	/**
 	 * @return string
 	 * @param array $identy
 	 */

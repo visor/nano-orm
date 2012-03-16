@@ -67,6 +67,13 @@ interface Orm_DataSource {
 	public function get(Orm_Resource $resource, Orm_Criteria $criteria);
 
 	/**
+	 * @return int
+	 * @param Orm_Resource $resource
+	 * @param Orm_Criteria $criteria
+	 */
+	public function count(Orm_Resource $resource, Orm_Criteria $criteria = null);
+
+	/**
 	 * @return array|boolean
 	 * @param Orm_Resource $resource
 	 * @param Orm_Criteria $criteria

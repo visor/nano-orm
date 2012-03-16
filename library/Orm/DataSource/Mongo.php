@@ -111,6 +111,24 @@ class Orm_DataSource_Mongo extends Orm_DataSource_Abstract implements Orm_DataSo
 	}
 
 	/**
+	 * @return int
+	 * @param Orm_Resource $resource
+	 * @param Orm_Criteria $criteria
+	 */
+	public function count(Orm_Resource $resource, Orm_Criteria $criteria = null) {
+		try {
+			if (null === $criteria) {
+				return $this->collection($resource->name())->count();
+			}
+
+			return $this->collection($resource->name())->count($this->criteriaToExpression($resource, $criteria));
+		} catch (\Exception $e) {
+//			Nano_Log::message($e);
+			return false;
+		}
+	}
+
+	/**
 	 * @return array|boolean
 	 * @param Orm_Resource $resource
 	 * @param Orm_Criteria $criteria

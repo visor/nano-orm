@@ -130,6 +130,14 @@ abstract class Orm_Mapper {
 	}
 
 	/**
+	 * @return int
+	 * @param Orm_Criteria|null $criteria
+	 */
+	public function count(Orm_Criteria $criteria = null) {
+		return $this->dataSource()->count($criteria);
+	}
+
+	/**
 	 * @return array|boolean
 	 * @param null|Orm_Criteria $criteria
 	 * @param null|Orm_FindOptions $findOptions

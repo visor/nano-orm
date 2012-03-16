@@ -125,6 +125,21 @@ abstract class Orm_DataSource_Pdo extends Orm_DataSource_Abstract implements Orm
 	}
 
 	/**
+	 * @return int
+	 * @param Orm_Resource $resource
+	 * @param Orm_Criteria $criteria
+	 */
+	public function count(Orm_Resource $resource, Orm_Criteria $criteria = null) {
+		try {
+			$query = $this->countQuery($resource, $criteria, null);
+			return $this->pdo->query($query)->fetchColumn(0);
+		} catch (\Exception $e) {
+//			Nano_Log::message($e);
+			return false;
+		}
+	}
+
+	/**
 	 * @return array|boolean
 	 * @param Orm_Resource $resource
 	 * @param Orm_Criteria $criteria
@@ -218,6 +233,14 @@ abstract class Orm_DataSource_Pdo extends Orm_DataSource_Abstract implements Orm
 			return $result;
 		}
 		return $result . $this->getLimitClause($findOptions) . $this->getOrderClause($findOptions);
+	}
+
+	protected function countQuery(Orm_Resource $resource, Orm_Criteria $criteria = null) {
+		$result = 'select count(*) from ' . $this->quoteName($resource->name());
+		if (null !== $criteria) {
+			$result .= ' where ' . $this->criteriaToExpression($resource, $criteria);
+		}
+		return $result;
 	}
 
 	/**

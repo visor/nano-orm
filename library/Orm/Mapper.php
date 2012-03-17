@@ -134,7 +134,7 @@ abstract class Orm_Mapper {
 	 * @param Orm_Criteria|null $criteria
 	 */
 	public function count(Orm_Criteria $criteria = null) {
-		return $this->dataSource()->count($criteria);
+		return $this->dataSource()->count($this->getResource(), $criteria);
 	}
 
 	/**

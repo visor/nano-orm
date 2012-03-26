@@ -81,6 +81,13 @@ class Orm {
 	}
 
 	/**
+	 * @return null|string
+	 */
+	public static function getDefaultSource() {
+		return self::$defaultSource;
+	}
+
+	/**
 	 * @return void
 	 * @param array|string $models
 	 * @param null|string $source

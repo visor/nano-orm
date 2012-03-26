@@ -70,6 +70,25 @@ class Library_Orm_TestDataSource extends Orm_DataSource_Abstract implements Orm_
 	}
 
 	/**
+	 * @return int
+	 * @param Orm_Resource $resource
+	 * @param Orm_Criteria $criteria
+	 */
+	public function count(Orm_Resource $resource, Orm_Criteria $criteria = null) {
+		if (null === $criteria) {
+			return $this->database[$resource->name()];
+		}
+		$expr   = $this->criteriaToExpression($resource, $criteria);
+		$result = 0;
+		foreach ($this->database[$resource->name()] as $record) {
+			if (true === $this->testExpression($expr, $record)) {
+				++$result;
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * @return array|boolean
 	 * @param Orm_Resource $resource
 	 * @param Orm_Criteria $criteria

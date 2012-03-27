@@ -232,7 +232,7 @@ abstract class Orm_DataSource_Pdo extends Orm_DataSource_Abstract implements Orm
 		if (null === $findOptions) {
 			return $result;
 		}
-		return $result . $this->getLimitClause($findOptions) . $this->getOrderClause($findOptions);
+		return $result . $this->getOrderClause($findOptions) . $this->getLimitClause($findOptions);
 	}
 
 	protected function countQuery(Orm_Resource $resource, Orm_Criteria $criteria = null) {

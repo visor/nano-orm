@@ -3,9 +3,6 @@
 namespace NanoOrm_Module;
 
 /**
- * @method Orm_Criteria and()
- * @method Orm_Criteria or()
- *
  * @property Orm_Criteria and
  * @property Orm_Criteria or
  */

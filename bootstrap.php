@@ -8,10 +8,10 @@ if (!class_exists('Application', false)) {
 	include __DIR__ . '/dependencies/nano/library/Application.php';
 }
 
-$application = Application::create()
+$application = \Nano\Application::create()
 	->withConfigurationFormat('php')
 	->withRootDir(__DIR__)
-	->withModule('nano-orm', __DIR__)
+	->withModule('orm', __DIR__)
 	->configure()
 ;
 

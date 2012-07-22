@@ -36,16 +36,16 @@ abstract class TestPdoSource extends \Nano\TestUtils\TestCase {
 	abstract protected function createDataSource();
 
 	public function testInsertingSimpleResource() {
-		$query = 'select count(*) from address';
+		$countQuery = 'select count(*) from address';
 		$data  = new \stdClass;
 		$data->location = 'Number 4, Privet Drive';
 
-		self::assertEquals(0, $this->source->pdo()->query($query)->fetchColumn(0));
+		self::assertEquals(0, $this->source->pdo()->query($countQuery)->fetchColumn(0));
 		self::assertTrue($this->source->insert($this->mapper->getResource(), $data));
-		self::assertEquals(1, $this->source->pdo()->query($query)->fetchColumn(0));
-
 		self::assertObjectHasAttribute('id', $data);
-		self::assertEquals($this->source->pdo()->lastInsertId('address'), $data->id);
+		self::assertEquals($this->source->pdo()->lastInsertId(), $data->id);
+
+		self::assertEquals(1, $this->source->pdo()->query($countQuery)->fetchColumn(0));
 		self::assertEquals($data, $this->source->pdo()->query('select id, location from address')->fetch(\PDO::FETCH_OBJ));
 	}
 

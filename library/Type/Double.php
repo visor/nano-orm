@@ -9,7 +9,10 @@ class Double implements \Module\Orm\Type {
 	 * @param mixed $value
 	 */
 	public function castToModel($value) {
-		return (double)$value;
+		if (is_scalar($value)) {
+			return (double)$value;
+		}
+		return .0;
 	}
 
 	/**

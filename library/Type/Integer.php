@@ -9,7 +9,10 @@ class Integer implements \Module\Orm\Type {
 	 * @param mixed $value
 	 */
 	public function castToModel($value) {
-		return (int)$value;
+		if (is_scalar($value)) {
+			return (int)$value;
+		}
+		return 0;
 	}
 
 	/**

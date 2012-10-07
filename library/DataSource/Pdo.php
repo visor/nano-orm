@@ -17,7 +17,14 @@ abstract class Pdo extends \Module\Orm\DataSource\Common implements \Module\Orm\
 			$userName  = isSet($config['username']) ? $config['username'] : null;
 			$password  = isSet($config['password']) ? $config['password'] : null;
 			$options   = isSet($config['options']) ? (array)$config['options'] : array();
-			$this->pdo = new \PDO($config['dsn'], $userName, $password, $options);
+
+			if (isSet($config['debug']) && true === $config['debug']) {
+				$this->pdo = new \Module\Orm\Pdo\Connection($config['dsn'], $userName, $password, $options);
+				$this->pdo->setAttribute(\PDO::ATTR_STATEMENT_CLASS, array('Module\Orm\Pdo\Statement'));
+			} else {
+				$this->pdo = new \PDO($config['dsn'], $userName, $password, $options);
+			}
+
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		}
 	}

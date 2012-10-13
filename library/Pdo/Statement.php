@@ -21,11 +21,11 @@ class Statement extends \PDOStatement {
 			$exception = $e;
 		}
 
-		if (\app()->queryLogger) {
+		if (isSet(\app()->queryLogger)) {
 			\app()->queryLogger->writeQuery(microTime(true) - $now, $this->queryString);
 		}
 		if ($exception) {
-			if (\app()->queryLogger) {
+			if (isSet(\app()->queryLogger)) {
 				\app()->queryLogger->writeError($exception);
 			}
 			throw $exception;

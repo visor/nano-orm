@@ -20,11 +20,11 @@ class Connection extends \PDO {
 		} catch (\Exception $e) {
 			$exception = $e;
 		}
-		if (\app()->queryLogger) {
+		if (isSet(\app()->queryLogger)) {
 			\app()->queryLogger->writeQuery(microTime(true) - $now, $statement);
 		}
 		if ($exception) {
-			if (\app()->queryLogger) {
+			if (isSet(\app()->queryLogger)) {
 				\app()->queryLogger->writeError($exception);
 			}
 			throw $exception;
@@ -49,11 +49,11 @@ class Connection extends \PDO {
 			$exception = $e;
 		}
 
-		if (\app()->queryLogger) {
+		if (isSet(\app()->queryLogger)) {
 			\app()->queryLogger->writeQuery(microTime(true) - $now, $statement);
 		}
 		if ($exception) {
-			if (\app()->queryLogger) {
+			if (isSet(\app()->queryLogger)) {
 				\app()->queryLogger->writeError($exception);
 			}
 			throw $exception;

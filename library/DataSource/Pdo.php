@@ -21,6 +21,9 @@ abstract class Pdo extends \Module\Orm\DataSource\Common implements \Module\Orm\
 			if (isSet($config['debug']) && true === $config['debug']) {
 				$this->pdo = new \Module\Orm\Pdo\Connection($config['dsn'], $userName, $password, $options);
 				$this->pdo->setAttribute(\PDO::ATTR_STATEMENT_CLASS, array('Module\Orm\Pdo\Statement'));
+				if (!isSet(\Nano::app()->queryLogger)) {
+					\Nano::app()->readOnly('queryLogger', new \Module\Orm\Pdo\Logger());
+				}
 			} else {
 				$this->pdo = new \PDO($config['dsn'], $userName, $password, $options);
 			}

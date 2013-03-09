@@ -1,0 +1,19 @@
+{
+	"name": "nano/orm",
+	"description": "ORM module for Nano",
+	"keywords": ["nano", "mvc", "framework"],
+	"homepage": "http://composer.visor.ws",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Victor Karamzin",
+			"email": "admin@visor.ws",
+			"homepage": "http://visor.ws"
+		}
+	],
+	"require": {
+		"nano/core": "~0.1"
+	},
+	"minimum-stability": "dev"
+}
